@@ -1,0 +1,13 @@
+{
+	"maxWidth": 64,
+	"maxHeight": 56,
+	"maxFeatures": 200,
+	"maxFloors": 1100,
+	"tiles": {
+		"walls": {"Cave Wall": 100},
+		"floors": {"Cave Floor": 100}
+	},
+	"cavernSteps": {"min": 10, "max": 30},
+	"corridorSteps": {"min": 3, "max": 10},
+	"boundary": 5
+}

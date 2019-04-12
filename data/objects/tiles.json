@@ -1,0 +1,22 @@
+{
+    "Cave Wall": {
+        "image_name": "cave_wall",
+        "character": "#",
+        "color": {
+            "back": "#ffffff",
+            "fore": "#ffffff"
+        },
+        "solid": true,
+        "walkable": false
+    },
+    "Cave Floor": {
+        "image_name": "cave_floor",
+        "character": ".",
+        "color": {
+            "back": "#ffffff",
+            "fore": "#ffffff"
+        },
+        "solid": false,
+        "walkable": true
+    }
+}

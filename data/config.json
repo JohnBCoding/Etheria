@@ -1,0 +1,10 @@
+{
+    "map": {
+        "width": 50,
+        "height": 30
+    },
+    "tile": {
+        "width": 16,
+        "height": 16
+    }
+}
