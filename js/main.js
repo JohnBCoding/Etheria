@@ -51,26 +51,34 @@ function create()
     this.map = [[]];
 
     this.max = 100;
+
+    // Create/initialize player.
     this.player = new Player('Player', 32, 32, null);
     this.player.init(this);
+    
+    // Generate map 
+    // Returns a completed map array and a spawn point for the player.
     let spawn = [];
-
     objects = [];
     this.map, spawn = generateCave(this, this.map, gameData.generation.cave, gameData.tiles, 
                                        gameData.generation.cave.maxWidth, gameData.generation.cave.maxHeight, 
                                        gameData.config.tile.width, gameData.config.tile.height);
     
+    // Move player to spawn point.
     this.player.x = spawn[0];
     this.player.y = spawn[1];
     
+    // Setup camera, make it follow the player.
     this.cameras.main.setSize(this.scale.width, this.scale.height);
     this.cameras.main.setBounds(0, 0, gameData.config.width*gameData.config.tile.width, gameData.config.height*gameData.config.tile.height);
     this.cameras.main.startFollow(this.player);
+
     // Create event listeners.
     this.input.on('gameobjectdown', function(mouse, obj){return onClick(this, mouse, obj)}, this);
+    
 }
 
-
+// Event Listeners.
 function onClick(game, mouse, obj)
 {
     if(obj.parent.walkable){
