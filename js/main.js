@@ -51,8 +51,8 @@ function create()
     this.map = [[]];
 
     this.max = 100;
-    player = new Player('Player', 32, 32, null);
-    player.init(this);
+    this.player = new Player('Player', 32, 32, null);
+    this.player.init(this);
     let spawn = [];
 
     objects = [];
@@ -60,18 +60,21 @@ function create()
                                        gameData.generation.cave.maxWidth, gameData.generation.cave.maxHeight, 
                                        gameData.config.tile.width, gameData.config.tile.height);
     
-    player.x = spawn[0];
-    player.y = spawn[1];
-
+    this.player.x = spawn[0];
+    this.player.y = spawn[1];
+    
+    this.cameras.main.setSize(this.scale.width, this.scale.height);
+    this.cameras.main.setBounds(0, 0, gameData.config.width*gameData.config.tile.width, gameData.config.height*gameData.config.tile.height);
+    this.cameras.main.startFollow(this.player);
     // Create event listeners.
-    this.input.on('gameobjectdown', function(mouse, obj){return onClick(mouse, obj)}, this);
+    this.input.on('gameobjectdown', function(mouse, obj){return onClick(this, mouse, obj)}, this);
 }
 
 
-function onClick(mouse, obj)
+function onClick(game, mouse, obj)
 {
     if(obj.parent.walkable){
-        player.moveTo = obj;
+        game.player.moveTo = obj;
         
     }
 }
@@ -88,7 +91,7 @@ function update()
     for(let x = 0; x < gameData.generation.cave.maxWidth; x++) {
         for(let y = 0; y < gameData.generation.cave.maxHeight; y++) {
             if(this.map[x][y]){
-                let distance = distanceTo(this.map[x][y].x, this.map[x][y].y, player.x, player.y);
+                let distance = distanceTo(this.map[x][y].x, this.map[x][y].y, this.player.x, this.player.y);
                 if(distance < this.max)
                 {
                     this.map[x][y].draw(this);
@@ -97,6 +100,6 @@ function update()
         }
     }
     
-    player.draw();
+    this.player.draw();
 
 }
