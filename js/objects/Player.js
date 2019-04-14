@@ -1,36 +1,29 @@
 class Player{
-    constructor(name, x, y, image, character, color)
+    constructor(name, x, y, sprite)
     {
         this.name = name;
         this.x = x;
         this.y = y;
-        this.image = image;
-        this.character = character;
-        this.color = color;
+        this.sprite = sprite;
+        this.moveTo = null;
     }
 
     init(game) {
-        // Creates and sets the sprite/character for the player.
-        this.image = game.add.sprite(this.x, this.y, 'player');
-        this.character = game.add.text(this.x, this.y, '@', {font: '16px Impact', fill: this.color.fore}).setOrigin(0.5);
-        this.image.depth = 1;
-        this.character.depth = 1;
+        // Creates and sets the sprite for the player.
+        this.sprite = game.add.sprite(this.x, this.y, 'player');
+        this.sprite.depth = 1;
     }
 
-    draw(tiles){
-        // Move image/character to current player coordinates.
-        this.image.x = this.x;
-        this.image.y = this.y;
-        this.character.x = this.x;
-        this.character.y = this.y;
+    draw(){
+        if(this.moveTo){
+            if(this.x != this.moveTo.x || this.y != this.moveTo.y){
+                this.x += -((this.x-this.moveTo.x)/16)*2;
+                this.y += -((this.y-this.moveTo.y)/16)*2;
+            }
+        }
 
-        // Switches between tiles/characters depending on given setting.
-        if(tiles){
-            this.character.visible = false;
-            this.image.visible = true;
-        } else {
-            this.character.visible = true;
-            this.image.visible = false;
-        } 
+        // Move sprite to current player coordinates.
+        this.sprite.x = this.x;
+        this.sprite.y = this.y;
     }
 }
