@@ -5,10 +5,10 @@ var config = {
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.BOTH,
-        //width: 256,
-        //height: 256,
-        width: 1024,
-        height: 896,
+        width: 256,
+        height: 256,
+        //width: 1024,
+       // height: 896,
         max: {
             width: 1024,
             height: 896

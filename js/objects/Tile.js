@@ -31,16 +31,17 @@ class Tile{
     onMouseHover(game){
         // Create a rectangle around sprite when mouse hovers.
         if(!this.highlight){
-            console.log(true);
-            this.highlight = game.add.rectangle(this.x, this.y, 16, 16);
-            this.highlight.setStrokeStyle(2, '0xffffff', 0.9);
+            let graphics = game.add.graphics();
+            graphics.lineStyle(2, 0xffffff);
+            this.highlight = graphics.strokeRoundedRect(this.x-(this.sprite.width/2), this.y-(this.sprite.height/2), 
+                                                        this.sprite.width, this.sprite.height, 4);
             this.highlight.depth = 2;
         }
         
     }
 
     onMouseLeave(game){
-        // Handles how the tile interacts once mouse leaves sprite area.
+        // Remove highlight on mouse leave.
         this.highlight.destroy();
         this.highlight = null;
     }
