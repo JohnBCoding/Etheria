@@ -33,9 +33,9 @@ class Tile{
         if(!this.highlight){
             let graphics = game.add.graphics();
             if(this.walkable){
-                graphics.lineStyle(2, config.highlights.walkable);
+                graphics.lineStyle(2, config.gui.highlights.walkable);
             } else {
-                graphics.lineStyle(2, config.highlights.unwalkable);
+                graphics.lineStyle(2, config.gui.highlights.unwalkable);
             }
             this.highlight = graphics.strokeRoundedRect(this.x-(this.sprite.width/2), this.y-(this.sprite.height/2), 
                                                         this.sprite.width, this.sprite.height, 4);

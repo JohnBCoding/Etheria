@@ -47,7 +47,6 @@ function caveDrunkWalk(map, config, tiles, width, height) {
     
     // Walk in random directions till all floors are used up.
     while(maxFloors > 0) {
-
 		// Switch betweeen modes when steps is 0.
 		if(steps == 0) {
 			mode = Object.keys(config.modes)[Math.round(Math.random())];

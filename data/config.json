@@ -1,14 +1,25 @@
 {
     "map": {
-        "width": 50,
-        "height": 30
+        "width": 64,
+        "height": 56
     },
     "tile": {
         "width": 16,
         "height": 16
     },
-    "highlights": {
-        "walkable": "0xffffff",
-        "unwalkable": "0xff0000"
+    "gui": {
+        "highlights": {
+            "walkable": "0xffffff",
+            "unwalkable": "0xff0000"
+        },
+        "bars": {
+            "width": 16,
+            "height": 8,
+            "color": {
+                "outline": "0x000000",
+                "hp": {"fore": "0xff0000", "back": "0xa50000"},
+                "mp": {"fore": "0xff0000", "back": "0xffffff"}
+            }
+        }
     }
 }

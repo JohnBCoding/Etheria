@@ -70,7 +70,7 @@ function create()
     
     // Setup camera, make it follow the player.
     this.cameras.main.setSize(this.scale.width, this.scale.height);
-    this.cameras.main.setBounds(0, 0, gameData.config.width*gameData.config.tile.width, gameData.config.height*gameData.config.tile.height);
+    this.cameras.main.setBounds(0, 0, gameData.config.map.width*gameData.config.tile.width, gameData.config.map.height*gameData.config.tile.height);
     this.cameras.main.startFollow(this.player);
 
     // Create event listeners.
@@ -107,7 +107,6 @@ function update()
             }
         }
     }
-    
-    this.player.draw();
 
+    this.player.draw();
 }
