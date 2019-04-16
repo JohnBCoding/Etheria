@@ -11,28 +11,32 @@ class Tile{
         this.highlight = null;
     }
 
-    init(game){
+    init(game, config){
         // Creates and sets sprite of the tile.
         this.sprite = game.add.sprite(this.x, this.y, this.sprite).setInteractive();
         this.sprite.parent = this; // Allows access to base class when interacting with the sprite/character.
 
         // Create event listeners for mouse hover/leave
-        this.sprite.on('pointerover', () => this.onMouseHover(game));
+        this.sprite.on('pointerover', () => this.onMouseHover(game, config));
         this.sprite.on('pointerout', () => this.onMouseLeave(game));
     }
 
-    draw(game){
+    draw(game, config){
         // Switches between tiles/characters depending on given setting.
         if(!this.sprite.x){  // Add sprite if not yet added.
-            this.init(game);
+            this.init(game, config);
         }
     }
 
-    onMouseHover(game){
-        // Create a rectangle around sprite when mouse hovers.
+    onMouseHover(game, config){
+        // Create a targeting rectangle around sprite when mouse hovers.
         if(!this.highlight){
             let graphics = game.add.graphics();
-            graphics.lineStyle(2, 0xffffff);
+            if(this.walkable){
+                graphics.lineStyle(2, config.highlights.walkable);
+            } else {
+                graphics.lineStyle(2, config.highlights.unwalkable);
+            }
             this.highlight = graphics.strokeRoundedRect(this.x-(this.sprite.width/2), this.y-(this.sprite.height/2), 
                                                         this.sprite.width, this.sprite.height, 4);
             this.highlight.depth = 2;

@@ -6,5 +6,9 @@
     "tile": {
         "width": 16,
         "height": 16
+    },
+    "highlights": {
+        "walkable": "0xffffff",
+        "unwalkable": "0xff0000"
     }
 }
