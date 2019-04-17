@@ -13,10 +13,10 @@
             "unwalkable": "0xff0000"
         },
         "bars": {
-            "width": 16,
-            "height": 8,
+            "width": 50,
+            "height": 12,
             "color": {
-                "hp": {"fore": "0xff0000", "back": "0xa50000", "outline": "0x000000"},
+                "hp": {"fore": "0xff0000", "back": "0xa50000", "outline": "0xba0000"},
                 "mp": {"fore": "0xff0000", "back": "0xffffff", "outline": "0x000000"}
             }
         }

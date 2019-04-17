@@ -49,7 +49,11 @@ function caveDrunkWalk(map, config, tiles, width, height) {
     while(maxFloors > 0) {
 		// Switch betweeen modes when steps is 0.
 		if(steps == 0) {
-			mode = Object.keys(config.modes)[Math.round(Math.random())];
+			if(mode == 'corridor'){
+				mode = 'cavern';
+			} else {
+				mode = Object.keys(config.modes)[Math.round(Math.random())];	
+			}
             steps = calculateSteps(config, mode);
 			limit = Math.floor(Math.random() * ((config.boundary+1) - 1) + 1);
 			
@@ -87,7 +91,7 @@ function caveDrunkWalk(map, config, tiles, width, height) {
 						}
 					}
 					
-					console.log(floorName);
+					//console.log(floorName);
 					// Create floor.
 					let newFloor = createTile(floorName, map[newX][newY].x, map[newX][newY].y, tiles);
 					map[newX][newY] = newFloor;

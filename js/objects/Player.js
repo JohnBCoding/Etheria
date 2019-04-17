@@ -1,4 +1,4 @@
-class Player{
+class Player {
     constructor(name, x, y, sprite)
     {
         this.name = name;

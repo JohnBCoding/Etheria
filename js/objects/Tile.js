@@ -1,4 +1,4 @@
-class Tile{
+class Tile {
     constructor(name, x, y, sprite, solid, walkable)
     {
         this.name = name;
