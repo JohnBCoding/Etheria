@@ -5,7 +5,7 @@
 	"maxFloors": 1250,
 	"tiles": {
 		"walls": {"Cave Wall": 100},
-		"floors": {"Cave Floor": 100}
+		"floors": {"Cave Floor": 50, "Cracked Cave Floor": 25, "Stalagmites": 25}
 	},
 	"modes": {
 		"cavern": {

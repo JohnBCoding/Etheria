@@ -18,7 +18,7 @@ class Tile{
 
         // Create event listeners for mouse hover/leave
         this.sprite.on('pointerover', () => this.onMouseHover(game, config));
-        this.sprite.on('pointerout', () => this.onMouseLeave(game));
+        this.sprite.on('pointerout', () => this.onMouseLeave());
     }
 
     draw(game, config){
@@ -44,7 +44,7 @@ class Tile{
         
     }
 
-    onMouseLeave(game){
+    onMouseLeave(){
         // Remove highlight on mouse leave.
         this.highlight.destroy();
         this.highlight = null;

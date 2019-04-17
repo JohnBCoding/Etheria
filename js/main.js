@@ -30,6 +30,8 @@ function preload()
     this.load.image('cave_wall_1', 'assets/sprites/cave_wall_1.png');
     this.load.image('cave_wall_2', 'assets/sprites/cave_wall_2.png');
     this.load.image('cave_floor', 'assets/sprites/cave_floor.png');
+    this.load.image('cave_cracked_floor', 'assets/sprites/cave_cracked_floor.png');
+    this.load.image('cave_stalagmites', 'assets/sprites/cave_stalagmites.png');
 
     // Load data.
     this.load.json('config', 'data/config.json');
@@ -67,6 +69,9 @@ function create()
     // Move player to spawn point.
     this.player.x = spawn[0];
     this.player.y = spawn[1];
+
+    this.player.hp = 100;
+    this.player.maxhp = 125;
     
     // Setup camera, make it follow the player.
     this.cameras.main.setSize(this.scale.width, this.scale.height);
@@ -75,7 +80,7 @@ function create()
 
     // Create event listeners.
     this.input.on('gameobjectdown', function(mouse, obj){return onClick(this, mouse, obj)}, this);
-    
+    bar = new Bar(25, 25, 100, 16, [this.player.hp, this.player.maxhp], gameData.config.gui.bars.color.hp, this);
 }
 
 // Event Listeners.
@@ -107,6 +112,10 @@ function update()
             }
         }
     }
+    // Testing hp/mp bars.
+    bar.draw();
+
+    
 
     this.player.draw();
 }

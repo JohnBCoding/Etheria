@@ -8,5 +8,15 @@
         "sprite_name": "cave_floor",
         "solid": false,
         "walkable": true
+    },
+    "Cracked Cave Floor": {
+        "sprite_name": "cave_cracked_floor",
+        "solid": false,
+        "walkable": true
+    },
+    "Stalagmites": {
+        "sprite_name": "cave_stalagmites",
+        "solid": false,
+        "walkable": true
     }
 }
