@@ -17,8 +17,8 @@ class Tile {
         this.sprite.parent = this; // Allows access to base class when interacting with the sprite/character.
 
         // Create event listeners for mouse hover/leave
-        this.sprite.on('pointerover', () => this.onMouseHover(game, config));
-        this.sprite.on('pointerout', () => this.onMouseLeave());
+        this.sprite.on('pointerover', function(){ game.events.emit('drawHighlight', this, config); }, this);
+        this.sprite.on('pointerout', function(){ game.events.emit('destroyHighlight', this, config); }, this);
     }
 
     draw(game, config){
@@ -26,27 +26,5 @@ class Tile {
         if(!this.sprite.x){  // Add sprite if not yet added.
             this.init(game, config);
         }
-    }
-
-    onMouseHover(game, config){
-        // Create a targeting rectangle around sprite when mouse hovers.
-        if(!this.highlight){
-            let graphics = game.add.graphics();
-            if(this.walkable){
-                graphics.lineStyle(2, config.gui.highlights.walkable);
-            } else {
-                graphics.lineStyle(2, config.gui.highlights.unwalkable);
-            }
-            this.highlight = graphics.strokeRoundedRect(this.x-(this.sprite.width/2), this.y-(this.sprite.height/2), 
-                                                        this.sprite.width, this.sprite.height, 4);
-            this.highlight.depth = 2;
-        }
-        
-    }
-
-    onMouseLeave(){
-        // Remove highlight on mouse leave.
-        this.highlight.destroy();
-        this.highlight = null;
     }
 }

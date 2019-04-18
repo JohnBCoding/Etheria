@@ -9,11 +9,13 @@
 	},
 	"modes": {
 		"cavern": {
-			"steps": {"min": 10, "max": 30}
+			"steps": {"min": 15, "max": 30},
+			"pickChance": 45
 		},
 		"corridor": {
-			"steps": {"min": 3, "max": 10}
+			"steps": {"min": 3, "max": 10},
+			"pickChance": 55
 		}
 	},
-	"boundary": 5
+	"boundary": 2
 }

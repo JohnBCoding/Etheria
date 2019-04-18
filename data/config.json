@@ -17,7 +17,7 @@
             "height": 12,
             "color": {
                 "hp": {"fore": "0xff0000", "back": "0xa50000", "outline": "0xba0000"},
-                "mp": {"fore": "0xff0000", "back": "0xffffff", "outline": "0x000000"}
+                "mp": {"fore": "0x0022ba", "back": "0x001a91", "outline": "0x001266"}
             }
         }
     }

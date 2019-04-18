@@ -25,10 +25,10 @@ function caveDrunkWalk(map, config, tiles, width, height) {
     let boundary = config.boundary;
     
 	// Pick random starting point to start walking.
-    let startX = Math.floor(Math.random() * (width-boundary)) + boundary;
-    let startY = Math.floor(Math.random() * (height-boundary)) + boundary;
-    console.log(startX);
-    console.log(startY);
+	console.log(boundary);
+    let startX = Math.floor(Math.random() * ((width-boundary) - boundary) + boundary);
+    let startY = Math.floor(Math.random() * ((height-boundary) - boundary) + boundary);
+    console.log(startX, startY);
 	
 	// Create new tile on starting point.
     let newFloor = new Tile('Cave Floor', map[startX][startY].x, map[startX][startY].y, 
@@ -37,10 +37,9 @@ function caveDrunkWalk(map, config, tiles, width, height) {
     map[startX][startY] = newFloor;
 
     // Created needed variables for walk.
-    let directions = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+	let directions = [[0, -1], [1, 0], [0, 1], [-1, 0]];
 	let newX = startX;
     let newY = startY;
-    let limit = 0;
     let steps = 0;
     let mode = null;
 	let stepDirection = null;
@@ -49,14 +48,26 @@ function caveDrunkWalk(map, config, tiles, width, height) {
     while(maxFloors > 0) {
 		// Switch betweeen modes when steps is 0.
 		if(steps == 0) {
-			if(mode == 'corridor'){
+			if(mode == null){ // Always start with a cavern.
 				mode = 'cavern';
 			} else {
-				mode = Object.keys(config.modes)[Math.round(Math.random())];	
+				// Calculate next mode based on preset chances.
+				keys = Object.keys(config.modes);
+				let chance = Math.floor(Math.random() * ((100) - 0) + 0);
+				let totalChance = 0;
+				for(let k = 0; k < keys.length; k++) {
+					if(chance <= config['modes'][keys[k]].pickChance+totalChance) {
+						mode = keys[k];
+						break
+					}
+
+					totalChance += config['modes'][keys[k]].pickChance;
+				}
 			}
+
+			// Calculate the number of steps the current mode will have to walk.
             steps = calculateSteps(config, mode);
-			limit = Math.floor(Math.random() * ((config.boundary+1) - 1) + 1);
-			
+
 			// Corridor only needs one direction per loop, so no need to grab a new one each time.
 			if(mode == 'corridor') {
 				stepDirection = directions[Math.floor(Math.random() * ((directions.length) - 0) + 0)];
@@ -65,10 +76,10 @@ function caveDrunkWalk(map, config, tiles, width, height) {
 		
 		if(mode == 'cavern') {
 			// Get random direction to step in.
-			stepDirection = directions[Math.floor(Math.random() * ((directions.length) - 0) + 0)];
+			stepDirection = directions[Math.floor(Math.random() * ((directions.length) - 0) + 0)]
 
 			// Check if step direction is within bounds of map and given limit.
-			if(withinBounds(newX, newY, width, height, stepDirection, limit)) {
+			if(withinBounds(newX, newY, width, height, stepDirection, boundary)) {
 				// It is within bounds so move there.
 				newX += stepDirection[0];
 				newY += stepDirection[1];
@@ -91,25 +102,21 @@ function caveDrunkWalk(map, config, tiles, width, height) {
 						}
 					}
 					
-					//console.log(floorName);
 					// Create floor.
 					let newFloor = createTile(floorName, map[newX][newY].x, map[newX][newY].y, tiles);
 					map[newX][newY] = newFloor;
-					maxFloors -= 1;	
+					maxFloors -= 1;
 				} else {
 					// Not a wall so walk backwards.
 					newX -= stepDirection[0];
 					newY -= stepDirection[1];
 				}
-			} else {
-				// Out of bounds walk backwards.
-				newY -=  stepDirection[1];
-			}
+			} 
 
 			steps -= 1;
 		} else {
 			// Check if position chosen is within map and limit bounds.
-			if(withinBounds(newX, newY, width, height, stepDirection, limit)) {
+			if(withinBounds(newX, newY, width, height, stepDirection, boundary)) {
 				// It is within bounds so move there.
 				newX += stepDirection[0];
 				newY += stepDirection[1];
@@ -122,7 +129,7 @@ function caveDrunkWalk(map, config, tiles, width, height) {
 					steps -= 1;
 				} else {
 					// Not a wall, cancel corridor creation.
-					steps -= 1;
+					steps = 0;
 				}
 			} else {
 				// Out of bounds, cancel corridor creation.
@@ -131,7 +138,7 @@ function caveDrunkWalk(map, config, tiles, width, height) {
 		}
 	}
 
-	// Return starting point of walk.
+	// Return map and starting point of walk.
 	return map, [map[startX][startY].x, map[startX][startY].y];
 }
 
@@ -144,9 +151,9 @@ function calculateSteps(config, mode){
     return steps;
 }
 
-function withinBounds(x, y, width, height, direction, limit) {
-	if(x+direction[0] > limit && x+direction[0] < width-limit) {
-		if(y+direction[1] > limit && y+direction[1] < height-limit) {
+function withinBounds(x, y, width, height, direction, boundary) {
+	if(x+direction[0] >= boundary && x+direction[0] < width-boundary) {
+		if(y+direction[1] >= boundary && y+direction[1] < height-boundary) {
 			return true;
 		}
 	}
