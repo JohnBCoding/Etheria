@@ -3,4 +3,4 @@
 
 Current active build can be played here: https://johnbcoding.github.io/Etheria/
 
-Currently using a modified version of Scroll of sprites[https://imgur.com/a/uHx4k] as a tileset.
+Currently using a modified version of [Scroll of Sprites](https://imgur.com/a/uHx4k) as a tileset.
