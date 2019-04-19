@@ -52,17 +52,7 @@ function caveDrunkWalk(map, config, tiles, width, height) {
 				mode = 'cavern';
 			} else {
 				// Calculate next mode based on preset chances.
-				keys = Object.keys(config.modes);
-				let chance = Math.floor(Math.random() * ((100) - 0) + 0);
-				let totalChance = 0;
-				for(let k = 0; k < keys.length; k++) {
-					if(chance <= config['modes'][keys[k]].pickChance+totalChance) {
-						mode = keys[k];
-						break
-					}
-
-					totalChance += config['modes'][keys[k]].pickChance;
-				}
+				mode = pickByChance(config['modes']);
 			}
 
 			// Calculate the number of steps the current mode will have to walk.
@@ -86,22 +76,9 @@ function caveDrunkWalk(map, config, tiles, width, height) {
 
 				// If new spot is a wall, turn it into a floor.
 				if(map[newX][newY].solid) {
-					// Pick type floor based on preset chance.
-					let keys = Object.keys(config.tiles.floors);
-					let floorName = null;
-					while(true) {
-						for(let k = 0; k < keys.length; k++) {
-							let chance = Math.floor(Math.random() * ((100) - 0) + 0);
-							if(chance <= config['tiles']['floors'][keys[k]]) {
-								floorName = keys[k];
-								break
-							}
-						}
-						if(floorName) {
-							break
-						}
-					}
-					
+					// Calculate next floor based on preset spawn chance.
+					let floorName = pickByChance(config.tiles.floors);
+
 					// Create floor.
 					let newFloor = createTile(floorName, map[newX][newY].x, map[newX][newY].y, tiles);
 					map[newX][newY] = newFloor;
@@ -166,4 +143,22 @@ function createTile(name, x, y, tiles){
 						   tiles[name].solid, tiles[name].walkable);
 	
 	return newTile;
+}
+
+function pickByChance(path)
+{
+	let keys = Object.keys(path);
+	let chance = Math.floor(Math.random() * ((100) - 0) + 0);
+	let totalChance = 0;
+	let choice = null;
+	for(let k = 0; k < keys.length; k++) {
+		if(chance <= path[keys[k]].pickChance+totalChance) {
+			choice = keys[k];
+			break
+		}
+
+		totalChance += path[keys[k]].pickChance;
+	}
+
+	return choice;
 }

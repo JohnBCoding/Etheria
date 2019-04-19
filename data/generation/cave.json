@@ -5,7 +5,11 @@
 	"maxFloors": 1250,
 	"tiles": {
 		"walls": {"Cave Wall": 100},
-		"floors": {"Cave Floor": 50, "Cracked Cave Floor": 25, "Stalagmites": 25}
+		"floors": {
+			"Cave Floor": {"pickChance": 80}, 
+			"Pile of Rocks": {"pickChance": 15}, 
+			"Stalagmites": {"pickChance": 5}
+		}
 	},
 	"modes": {
 		"cavern": {

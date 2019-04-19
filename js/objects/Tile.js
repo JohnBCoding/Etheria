@@ -18,7 +18,7 @@ class Tile {
 
         // Create event listeners for mouse hover/leave
         this.sprite.on('pointerover', function(){ game.events.emit('drawHighlight', this, config); }, this);
-        this.sprite.on('pointerout', function(){ game.events.emit('destroyHighlight', this, config); }, this);
+        this.sprite.on('pointerout', function(){ game.events.emit('destroyHighlight'); }, this);
     }
 
     draw(game, config){

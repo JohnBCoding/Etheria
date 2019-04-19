@@ -8,6 +8,7 @@
         "height": 16
     },
     "gui": {
+        "font": "courier_new_10px",
         "highlights": {
             "walkable": "0xffffff",
             "unwalkable": "0xff0000"

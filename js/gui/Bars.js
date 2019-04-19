@@ -1,5 +1,5 @@
-class Bar{ // General use bar, mostly for hp/mp.
-    constructor(x, y, width, height, values, color, reverse, game){
+class Bar{ // hp/mp bar.
+    constructor(x, y, width, height, values, color, reverse, gui){
         this.x = x;
         this.y = y;
         this.width = width;
@@ -9,16 +9,14 @@ class Bar{ // General use bar, mostly for hp/mp.
         this.reverse = reverse;
         
         // Initialize graphics and text.
-        this.bar  = game.add.graphics();
-        
-        let text = (this.values[0]+'/'+this.values[1]);
-        this.text = game.add.bitmapText(x+text.length-4, y, 'courier_new_10px', text);
-
-        // Calculate width of foreground bar.
-        this.foreWidth = (this.width/this.values[1])*this.values[0];
+        this.bar  = gui.add.graphics();
+        this.text = gui.add.bitmapText(x, y, gui.guiFont, '').setAlpha(0.6);
     }
 
     draw(){
+        // Calculate width of foreground bar.
+        this.foreWidth = (this.width/this.values[1])*this.values[0];
+
         // Outline of bar.
         this.bar.fillStyle(this.color.outline)
         this.bar.fillRect(this.x-1, this.y-1, this.width+2, this.height+2);
@@ -35,5 +33,9 @@ class Bar{ // General use bar, mostly for hp/mp.
         } else{
             this.bar.fillRect(this.x, this.y, this.foreWidth, this.height);
         }
+        
+        // Text ontop of bar.
+        this.text.setText(this.values[0]+'/'+this.values[1]);
+        this.text.x = this.x+(this.text.text.length);
     }
 }

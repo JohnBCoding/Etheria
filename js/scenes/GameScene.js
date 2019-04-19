@@ -19,7 +19,7 @@ class GameScene extends Phaser.Scene {
         this.max = 100;
 
         // Create/initialize player.
-        this.player = new Player('Player', 32, 32, null);
+        this.player = new Player('Player', 32, 32, 'player');
         this.player.init(this);
         
         // Generate map 
@@ -41,13 +41,13 @@ class GameScene extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this.gameConfig.map.width*this.gameConfig.tile.width, 
                                     this.gameConfig.map.height*this.gameConfig.tile.height);
         this.cameras.main.startFollow(this.player);
+        this.cameras.main.alpha = 0.8;
 
         // Create event listeners.
-        this.input.on('gameobjectdown', function(mouse, obj){return this.onClick(this, mouse, obj)}, this);
+        this.input.on('gameobjectdown', function(mouse, obj){return this.onClick(mouse, obj)}, this);
 
         // Launch GUI.
         this.scene.run('GUIScene');
-
     }
 
     update()
@@ -76,10 +76,13 @@ class GameScene extends Phaser.Scene {
     }
 
     // Event Listeners.
-    onClick(game, mouse, obj)
+    onClick(mouse, obj)
     {
         if(obj.parent.walkable){
-            game.player.moveTo = obj;
+            this.player.moveTo = obj;
         }
+        this.player.hp -= 1;
+        this.player.bar.values = [this.player.hp, this.player.maxhp];
+        this.player.bar2.values = [this.player.hp, this.player.maxhp];
     }
 }

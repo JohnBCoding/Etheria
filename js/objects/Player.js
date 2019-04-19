@@ -1,17 +1,9 @@
-class Player {
+class Player extends ActorBase{
     constructor(name, x, y, sprite)
     {
-        this.name = name;
-        this.x = x;
-        this.y = y;
-        this.sprite = sprite;
+        super(name, x, y, sprite);
         this.moveTo = null;
-    }
-
-    init(game) {
-        // Creates and sets the sprite for the player.
-        this.sprite = game.add.sprite(this.x, this.y, 'player');
-        this.sprite.depth = 1;
+        this.bar = null;
     }
 
     draw(game){

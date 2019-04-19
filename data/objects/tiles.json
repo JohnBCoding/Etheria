@@ -1,6 +1,6 @@
 {
     "Cave Wall": {
-        "sprite_name": "cave_wall_2",
+        "sprite_name": "cave_wall_1",
         "solid": true,
         "walkable": false
     },
@@ -9,8 +9,8 @@
         "solid": false,
         "walkable": true
     },
-    "Cracked Cave Floor": {
-        "sprite_name": "cave_cracked_floor",
+    "Pile of Rocks": {
+        "sprite_name": "cave_pile_of_rocks",
         "solid": false,
         "walkable": true
     },
