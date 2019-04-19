@@ -2,23 +2,7 @@ class GameScene extends Phaser.Scene {
 
     constructor()
     {
-        super({ key: 'GameScene', active: true })
-    }
-
-    preload()
-    {
-        // Load images.
-        this.load.image('player', 'assets/sprites/character_plain.png');
-        this.load.image('cave_wall_1', 'assets/sprites/cave_wall_1.png');
-        this.load.image('cave_wall_2', 'assets/sprites/cave_wall_2.png');
-        this.load.image('cave_floor', 'assets/sprites/cave_floor.png');
-        this.load.image('cave_cracked_floor', 'assets/sprites/cave_cracked_floor.png');
-        this.load.image('cave_stalagmites', 'assets/sprites/cave_stalagmites.png');
-
-        // Load data.
-        this.load.json('config', 'data/config.json');
-        this.load.json('cave', 'data/generation/cave.json');
-        this.load.json('tiles', 'data/objects/tiles.json');
+        super({ key: 'GameScene', active: false })
     }
 
     create()

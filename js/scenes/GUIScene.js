@@ -6,12 +6,6 @@ class GUIScene extends Phaser.Scene {
         
     }
 
-    preload()
-    {
-        // Load fonts.
-        this.load.bitmapFont('courier_new_10px', 'assets/fonts/courier_new_10px.png', 'assets/fonts/courier_new_10px.fnt');
-    }
-
     create()
     {
         let game = this.scene.get('GameScene');

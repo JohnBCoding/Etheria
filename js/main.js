@@ -17,7 +17,7 @@ window.addEventListener('load', function() {
             },
             parent: 'game_container'
         },
-        scene: [GameScene, GUIScene]
+        scene: [PreloadScene, GameScene, GUIScene]
     };
 
     game = new Phaser.Game(config);
