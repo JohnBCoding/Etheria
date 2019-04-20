@@ -1,9 +1,8 @@
 class Player extends ActorBase{
-    constructor(name, x, y, sprite)
+    constructor(name, x, y, sprite, combat)
     {
-        super(name, x, y, sprite);
+        super(name, x, y, sprite, combat);
         this.moveTo = null;
-        this.bar = null;
     }
 
     draw(game){

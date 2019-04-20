@@ -15,14 +15,13 @@ class GUIScene extends Phaser.Scene {
 
         this.guiFont = game.gameConfig.gui.font;
 
-        let bar = new Bar(1, 1, game.gameConfig.gui.bars.width, game.gameConfig.gui.bars.height, 
-                          [game.player.hp, game.player.maxhp], game.gameConfig.gui.bars.color.hp, false, this);
+        // Create player hp/mp bars.
+        let bar = game.player.combat.createBar(1, 1, game.gameConfig.gui.bars.width, game.gameConfig.gui.bars.height, 
+                                             game.gameConfig.gui.bars.color.hp, false, 'hp', this);
 
-        let bar2 = new Bar(game.cameras.main.width-game.gameConfig.gui.bars.width-1, 1, game.gameConfig.gui.bars.width, game.gameConfig.gui.bars.height, 
-                           [game.player.hp, game.player.maxhp], game.gameConfig.gui.bars.color.mp, true, this);
+        let bar2 = game.player.combat.createBar(game.cameras.main.width-game.gameConfig.gui.bars.width-1, 1, game.gameConfig.gui.bars.width, game.gameConfig.gui.bars.height, 
+                                                game.gameConfig.gui.bars.color.mp, true, 'mp', this);
         
-        game.player.bar = bar;
-        game.player.bar2 = bar2;
         this.elements.push(bar, bar2);
         this.highlight = null;
 

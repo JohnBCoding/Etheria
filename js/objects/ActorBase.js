@@ -1,10 +1,11 @@
 class ActorBase{
-    constructor(name, x, y, sprite)
+    constructor(name, x, y, sprite, combat)
     {
         this.name = name;
         this.x = x;
         this.y = y;
         this.sprite = sprite;
+        this.combat = combat;
     }
 
     init(game) {

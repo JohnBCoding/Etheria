@@ -19,7 +19,8 @@ class GameScene extends Phaser.Scene {
         this.max = 100;
 
         // Create/initialize player.
-        this.player = new Player('Player', 32, 32, 'player');
+        let combat = new Combat(100, 100);
+        this.player = new Player('Player', 32, 32, 'player', combat);
         this.player.init(this);
         
         // Generate map 
@@ -33,9 +34,6 @@ class GameScene extends Phaser.Scene {
         // Move player to spawn point.
         this.player.x = spawn[0];
         this.player.y = spawn[1];
-
-        this.player.hp = 100;
-        this.player.maxhp = 100;
         
         // Setup camera, make it follow the player.
         this.cameras.main.setBounds(0, 0, this.gameConfig.map.width*this.gameConfig.tile.width, 
@@ -81,8 +79,8 @@ class GameScene extends Phaser.Scene {
         if(obj.parent.walkable){
             this.player.moveTo = obj;
         }
-        this.player.hp -= 1;
-        this.player.bar.values = [this.player.hp, this.player.maxhp];
-        this.player.bar2.values = [this.player.hp, this.player.maxhp];
+        this.player.combat.takeDamage(2, 'hp');
+        this.player.combat.takeDamage(6, 'mp');
+        
     }
 }
