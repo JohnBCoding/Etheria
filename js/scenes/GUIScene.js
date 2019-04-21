@@ -57,9 +57,8 @@ class GUIScene extends Phaser.Scene {
             this.highlight = graphics.strokeRoundedRect(offsetX, offsetY, obj.sprite.width, obj.sprite.height, 4);
 
             // Draw objects name in bottom right corner of screen.
-            this.highlight.text = this.add.bitmapText(game.cameras.main.width, game.cameras.main.height, this.guiFont, obj.name).setAlpha(0.6);;
-            this.highlight.text.x += Math.round((obj.name.length*this.highlight.text.fontSize)/1.5);
-            this.highlight.text.y += (this.highlight.text.fontSize*2);
+            this.highlight.text = this.add.bitmapText(game.cameras.main.width-60, game.cameras.main.height, this.guiFont, obj.name).setAlpha(0.6);;
+            this.highlight.text.y -= (this.highlight.text.fontSize*1.5);
 
             // Set text color.
             this.highlight.text.setTintFill(0xffffff);

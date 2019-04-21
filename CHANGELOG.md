@@ -1,5 +1,5 @@
 ---
- website: https://johnbcoding.github.io/Etheria/
+ website: https://etheria.netlify.com/
 ---
 # Etheria
 

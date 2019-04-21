@@ -10,7 +10,7 @@ class Bar{ // hp/mp bar.
         
         // Initialize graphics and text.
         this.bar  = gui.add.graphics();
-        this.text = gui.add.bitmapText(x, y, gui.guiFont, '').setAlpha(0.6);
+        this.text = gui.add.bitmapText(x, y+1, gui.guiFont, '').setAlpha(0.8);
     }
 
     draw(){
@@ -36,6 +36,6 @@ class Bar{ // hp/mp bar.
         
         // Text ontop of bar.
         this.text.setText(this.values[0]+'/'+this.values[1]);
-        this.text.x = this.x+(this.text.text.length);
+        this.text.x = this.x+(this.text.text.length + ((this.text.fontSize - (this.text.text.length+1))*4))+1;
     }
 }

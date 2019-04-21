@@ -25,10 +25,8 @@ function caveDrunkWalk(map, config, tiles, width, height) {
     let boundary = config.boundary;
     
 	// Pick random starting point to start walking.
-	console.log(boundary);
     let startX = Math.floor(Math.random() * ((width-boundary) - boundary) + boundary);
     let startY = Math.floor(Math.random() * ((height-boundary) - boundary) + boundary);
-    console.log(startX, startY);
 	
 	// Create new tile on starting point.
     let newFloor = new Tile('Cave Floor', map[startX][startY].x, map[startX][startY].y, 

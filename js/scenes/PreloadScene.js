@@ -22,7 +22,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.json('tiles', 'data/objects/tiles.json');
 
         // Load fonts.
-        this.load.bitmapFont('courier_new_10px', 'assets/fonts/courier_new_10px.png', 'assets/fonts/courier_new_10px.fnt');
+        this.load.bitmapFont('kenny_mini_8px', 'assets/fonts/kenny_mini_8px.png', 'assets/fonts/kenny_mini_8px.fnt');
     }
 
     create()
