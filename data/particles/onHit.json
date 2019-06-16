@@ -1,0 +1,22 @@
+{
+    "basic": {
+        "angle": {
+            "min": 1,
+            "max": 360
+        },
+        "speed": {
+            "min": 20,
+            "max": 40
+        },
+        "quantity": {
+            "min": 50,
+            "max": 100
+        },
+        "scale": {
+            "start": 1.5,
+            "end": 0.25
+        },
+        "lifespan": 400,
+        "on": false
+    }
+}

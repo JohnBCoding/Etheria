@@ -4,6 +4,7 @@ window.addEventListener('load', function() {
         type: Phaser.AUTO,
         backgroundColor: '#424242',
         pixelArt: true,
+        antialias: false,
         scale: {
             mode: Phaser.Scale.FIT,
             autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,

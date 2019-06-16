@@ -8,6 +8,7 @@ class Tile {
         this.solid = solid;
         this.walkable = walkable;
 
+        this.occupied = false;
         this.highlight = null;
     }
 

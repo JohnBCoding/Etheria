@@ -1,6 +1,7 @@
 class Combat{
-    constructor(hp, mp, game)
+    constructor(parent, hp, mp)
     {
+        this.parent = parent;
         this.hp = hp;
         this.maxHP = hp;
         this.mp = mp;
@@ -11,18 +12,22 @@ class Combat{
 
     createBar(x, y, width, height, color, reverse, type, gui){
         if(type == 'hp'){
-            this.barHP = new Bar(x, y, width, height, [this.hp, this.maxHP], color, reverse, gui);
+            this.barHP = new Bar(this.parent, x, y, width, height, [this.hp, this.maxHP], color, reverse, gui);
             return this.barHP;
         } else {
-            this.barMP = new Bar(x, y, width, height, [this.mp, this.maxMP], color, reverse, gui);
+            this.barMP = new Bar(this.parent, x, y, width, height, [this.mp, this.maxMP], color, reverse, gui);
             return this.barMP;
         }
     }
 
     updateBars() {
         // Updates text of hp/mp bars to current values.
-        this.barHP.values = [this.hp, this.maxHP];
-        this.barMP.values = [this.mp, this.maxMP];
+        if(this.barHP){
+            this.barHP.values = [this.hp, this.maxHP];
+        }
+        if(this.barMP){
+            this.barMP.values = [this.mp, this.maxMP];
+        }
     }
 
     takeDamage(damage, takeFrom) {
@@ -32,6 +37,14 @@ class Combat{
         } else {
             this.mp -= damage;
             if(this.mp < 0){ this.mp = 0 };
+        }
+
+        this.parent.game.particles.emitParticleAt(this.parent.x, this.parent.y);
+
+        // Handle death of parent.
+        if(this.hp <= 0){
+            this.barHP.bar.destroy();
+            this.parent.destroy();
         }
 
         // Update hp/mp bars with current values.

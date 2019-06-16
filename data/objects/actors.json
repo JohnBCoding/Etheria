@@ -1,0 +1,9 @@
+{
+    "Mutated Rat": {
+        "sprite_name": "mutated_rat",
+        "stats": {
+            "hp": 5,
+            "mp": 5
+        }
+    }
+}

@@ -98,6 +98,10 @@ function caveDrunkWalk(map, config, tiles, width, height) {
 
 				// If new spot is a wall, turn it into a floor.
 				if(map[newX][newY].solid) {
+					// Calculate next floor based on preset spawn chance.
+					let floorName = pickByChance(config.tiles.floors);
+
+					// Create floor.
 					let newFloor = createTile('Cave Floor', map[newX][newY].x, map[newX][newY].y, tiles);
 					map[newX][newY] = newFloor;
 					maxFloors -= 1;
@@ -145,6 +149,8 @@ function createTile(name, x, y, tiles){
 
 function pickByChance(path)
 {
+	// Takes a path to objects, loops through them and picks one 
+	// based on the set chances of the objects to be spawned.
 	let keys = Object.keys(path);
 	let chance = Math.floor(Math.random() * ((100) - 0) + 0);
 	let totalChance = 0;

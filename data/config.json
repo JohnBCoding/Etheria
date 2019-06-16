@@ -3,7 +3,7 @@
         "width": 64,
         "height": 56
     },
-    "tile": {
+    "tiles": {
         "width": 16,
         "height": 16
     },
@@ -11,7 +11,9 @@
         "font": "kenny_mini_8px",
         "highlights": {
             "walkable": "0xffffff",
-            "unwalkable": "0xff0000"
+            "unwalkable": "0xff0000",
+            "target": "0xe87a0d",
+            "text": "0xffffff"
         },
         "bars": {
             "width": 50,

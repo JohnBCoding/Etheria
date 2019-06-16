@@ -1,5 +1,6 @@
 class Bar{ // hp/mp bar.
-    constructor(x, y, width, height, values, color, reverse, gui){
+    constructor(parent, x, y, width, height, values, color, reverse, gui){
+        this.parent = parent;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -7,13 +8,19 @@ class Bar{ // hp/mp bar.
         this.values = values; // Array, [0] = current value, [1] = max value
         this.color = color;
         this.reverse = reverse;
+        this.gui = gui;
         
         // Initialize graphics and text.
         this.bar  = gui.add.graphics();
-        this.text = gui.add.bitmapText(x, y+1, gui.guiFont, '').setAlpha(0.8);
+        if(this.parent.name == 'player'){
+            this.text = gui.add.bitmapText(x, y+1, gui.guiFont, '', 8).setAlpha(0.8);
+        }
     }
 
     draw(){
+        // Clear bar drawn before.
+        this.bar.clear();
+        
         // Calculate width of foreground bar.
         this.foreWidth = (this.width/this.values[1])*this.values[0];
 
@@ -34,8 +41,10 @@ class Bar{ // hp/mp bar.
             this.bar.fillRect(this.x, this.y, this.foreWidth, this.height);
         }
         
-        // Text ontop of bar.
-        this.text.setText(this.values[0]+'/'+this.values[1]);
-        this.text.x = this.x+(this.text.text.length + ((this.text.fontSize - (this.text.text.length+1))*4))+1;
+        // Text ontop of bar, mobs don't get text on hp bars.
+        if(this.parent.name == 'player'){
+            this.text.setText(this.values[0]+'/'+this.values[1]);
+            this.text.x = this.x+(this.text.text.length + ((this.text.fontSize - (this.text.text.length+1))*4))+1;
+        }
     }
 }
